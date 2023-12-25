@@ -28,20 +28,28 @@ jobs:
     env:
       image_tag: ${{ inputs.image_tag }}
       IMAGE_TAG_SUFFIX: ${{ inputs.image_tag_suffix }}
-    runs-on: [matterlabs-ci-runner]
+    runs-on: [ ${{ matrix.component.runner }} ]
     strategy:
       matrix:
           component:
           - name: server-v2
             platforms: linux/amd64
+            runner: matterlabs-ci-runner
           - name: external-node
             platforms: linux/amd64
+            runner: matterlabs-ci-runner
+          - name: external-node
+            platforms: linux/arm64
+            runner: matterlabs-ci-runner-arm
           - name: contract-verifier
             platforms: linux/amd64
+            runner: matterlabs-ci-runner
           - name: cross-external-nodes-checker
             platforms: linux/amd64
+            runner: matterlabs-ci-runner
           - name: snapshots-creator
             platforms: linux/amd64
+            runner: matterlabs-ci-runner
 
     steps:
       - name: Set up QEMU
