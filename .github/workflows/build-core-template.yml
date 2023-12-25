@@ -28,7 +28,7 @@ jobs:
     env:
       image_tag: ${{ inputs.image_tag }}
       IMAGE_TAG_SUFFIX: ${{ inputs.image_tag_suffix }}
-    runs-on: [ ${{ matrix.component.runner }} ]
+    runs-on: ${{ matrix.component.runner }}
     strategy:
       matrix:
           component:
